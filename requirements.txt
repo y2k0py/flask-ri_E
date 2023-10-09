@@ -7,4 +7,4 @@ MarkupSafe==2.1.1
 Werkzeug==2.3.7
 spotipy==2.22.1
 Flask-SQLAlchemy==3.1.1
-mysqlclient
+pymysql==1.1.0
