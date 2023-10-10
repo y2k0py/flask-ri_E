@@ -75,7 +75,7 @@ def tgbotlink():
                     db.session.rollback()
                     return render_template('error.html', error=f'db: {e}')
 
-            return render_template('templates/redirectbot.html', random_numbers=random_numbers)
+            return render_template('templates/redirectbot.html')
     except Exception as e:
         return render_template('error.html', error = f'tg bot link: {e}')
 
