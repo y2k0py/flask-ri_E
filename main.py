@@ -8,7 +8,7 @@ from flask_sqlalchemy import SQLAlchemy
 app = Flask(__name__)
 
 app.config["SESSION_COOKIE_NAME"] = 'Spotify Cookie'
-app.config['SQLALCHEMY_DATABASE_URI'] = "postgresql://postgres:56RniQjprgfAtZFZw1pG@containers-us-west-190.railway.app:7312/railway"
+app.config['SQLALCHEMY_DATABASE_URI'] = "postgresql://postgres:s0YkznQhVjFDUkMKRA0O@containers-us-west-93.railway.app:6780/railway"
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 db = SQLAlchemy(app)
