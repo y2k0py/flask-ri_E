@@ -60,7 +60,7 @@ def tgbotlink():
         existing_user = Users.query.filter_by(spotify_token=token_info_json).first()
 
         if existing_user:
-            return render_template('templates/redirectbot.html', random_numbers=existing_user.telegram_code)
+            return render_template('redirectbot.html', random_numbers=existing_user.telegram_code)
         else:
             random_numbers = ''.join(random.choice('0123456789') for _ in range(20))
             existing_code = Users.query.filter_by(telegram_code=random_numbers).first()
@@ -75,7 +75,7 @@ def tgbotlink():
                     db.session.rollback()
                     return render_template('error.html', error=f'db: {e}')
 
-            return render_template('templates/redirectbot.html',random_numbers=random_numbers)
+            return render_template('redirectbot.html',random_numbers=random_numbers)
     except Exception as e:
         return render_template('error.html', error = f'tg bot link: {e}')
 
