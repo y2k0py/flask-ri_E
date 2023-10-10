@@ -42,8 +42,7 @@ def redirect_page():
     session.clear()
     # code = request.args.get('code')
     try:
-        code = request.args.get('code')
-        token_info = create_oauth().get_access_token(code)
+        token_info = create_oauth().get_cached_token()
         session[TOKEN_INFO] = token_info
         return redirect(url_for('tgbotlink', _external=True))
     except Exception as e:
