@@ -16,8 +16,8 @@ db = SQLAlchemy(app)
 class Users(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     spotify_token = db.Column(db.String(750), unique=True, nullable=False)
-    telegram_code = db.Column(db.Integer, unique=True, nullable=False)
-    telegram_user_id = db.Column(db.String(15), unique=True)
+    telegram_code = db.Column(db.String(20), unique=True, nullable=False)
+    telegram_user_id = db.Column(db.BigInteger, unique=True)
 
     def __repr__(self):
         return f'users {self.id}'
