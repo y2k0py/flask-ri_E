@@ -35,7 +35,7 @@ def login():
         auth_url = create_oauth().get_authorize_url()
         return redirect(auth_url)
     except Exception as e:
-        return render_template('error.html', error = 'index error')
+        return render_template('templates/error.html', error = 'index error')
 
 @app.route('/redirect')
 def redirect_page():
@@ -47,7 +47,7 @@ def redirect_page():
         session[TOKEN_INFO] = token_info
         return redirect(url_for('tgbotlink', _external=True))
     except Exception as e:
-        return render_template('error.html', error = f'redirect error: {e}')
+        return render_template('templates/error.html', error = f'redirect error: {e}')
 
 @app.route('/tgbotlink')
 def tgbotlink():
@@ -55,12 +55,12 @@ def tgbotlink():
         token_info = get_token()
         token_info_json = json.dumps(token_info)
         if token_info_json == 'null':
-            return render_template('error.html', error =' json = null')
+            return render_template('templates/error.html', error =' json = null')
 
         existing_user = Users.query.filter_by(spotify_token=token_info_json).first()
 
         if existing_user:
-            return render_template('redirectbot.html', random_numbers=existing_user.telegram_code)
+            return render_template('templates/redirectbot.html', random_numbers=existing_user.telegram_code)
         else:
             random_numbers = ''.join(random.choice('0123456789') for _ in range(20))
             existing_code = Users.query.filter_by(telegram_code=random_numbers).first()
@@ -75,9 +75,9 @@ def tgbotlink():
                     db.session.rollback()
                     return render_template('error.html', error=f'db: {e}')
 
-            return render_template('redirectbot.html', random_numbers=random_numbers)
+            return render_template('templates/redirectbot.html', random_numbers=random_numbers)
     except Exception as e:
-        return render_template('error.html', error = f'tg bot link: {e}')
+        return render_template('templates/error.html', error = f'tg bot link: {e}')
 
 def get_token():
     return session.get(TOKEN_INFO, None)
